@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <string.h>
+void timeConversion(char*s){
+    int hour;
+    char period[3];
+    char result[9];
+    sscanf(s, "%2d", &hour);
+    strncpy(period, &s[8], 2);
+    period[2]='\0';
+    if (strcmp(period, "AM")==0 && hour ==12){
+        hour = 0;
+    } else if (strcmp(period, "PM")==0 && hour !=12){
+        hour+=12;
+    }
+    sprintf(result, "%02d:%c%c:%c%c",hour, s[3], s[4], s[6], s[7]);
+    printf("%s\n",result);
+}
+int main(){
+    char time[11];
+    scanf("%s", time);
+    timeConversion(time);
+    return 0;
+}
